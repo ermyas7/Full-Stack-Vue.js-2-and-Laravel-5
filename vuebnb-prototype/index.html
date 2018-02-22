@@ -48,7 +48,9 @@
 
   				<h3> About this listing </h3>
   	
-  				<p> {{about}} </p>
+  				<p v-bind:class="{contracted : contracted}"> {{about}} </p>
+
+  				<button v-if="contracted" class="more"  v-on:click="contracted = false"> + More</button>
   
   		</div>
 
@@ -72,6 +74,22 @@
 
   				</div>
 
+  			</div>
+
+  			<div class="prices list">
+
+  				<div class="title"> <strong> Pricess </strong></div>
+
+  				<div class="content">
+  					
+  					<div class="list-item" v-for="price in prices">
+  						
+  						{{price.title}}:  <strong> {{price.value}} </strong>
+
+  					</div>
+
+  				</div>
+  				
   			</div>
 
   		</div> 	

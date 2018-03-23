@@ -20,7 +20,11 @@ awesome.css">
 <div id="app">
  
   <div class="header">
- 	<div class="header-img" v-bind:style="headerImageStyle"></div>  	
+ 	<div class="header-img" 
+ 	v-bind:style="headerImageStyle"
+ 	v-on:click="modalOpen = true">
+ 		<button class="view-photos">View photos</button>
+ 	</div>  	
   </div>
   
   <div class="container">
@@ -35,7 +39,7 @@ awesome.css">
   	<div class="about">
   		<h3> About this listing </h3>
   		<p v-bind:class="{contracted:contracted}"> {{about}} </p>
-  		<button class="more" v-on:click="contracted = false">+ More</button>
+  		<button v-if="contracted" class="more" v-on:click="contracted = false">+ More</button>
   	</div>
 
   	<div class="listing">
@@ -65,6 +69,16 @@ awesome.css">
 
   	</div>	
 
+  </div>
+
+  <div id="modal" v-bind:class="{ show:modalOpen }">
+  	<div class="modal-content">
+  		<button v-on:click="modalOpen = false" class="model-close" >
+  			&times;
+  		</button>
+  		<img src="sample/header.jpg">
+  	</div>
+  	
   </div>
 
 </div>

@@ -1,20 +1,17 @@
+import "core-js/fn/object/assign";
 import Vue from 'vue';
-import sample from './data';
+import { populateAmenitiesAndPrices } from './helpers';
+let model = JSON.parse(vuebnb_listing_model); 
+model = populateAmenitiesAndPrices(model);
 var app = new Vue({
 	el: '#app',
-	data: {
-		title: sample.title,
-		address: sample.address,
-		about: sample.about,
-		headerImageStyle: {
-			'background-image': 'url(../images/header.jpg)'
-		},
-
-		amenities: sample.amenities,
-		prices: sample.prices,
-		contracted: true,
-		modalOpen: false
-	},
+	data: Object.assign(model, {
+			headerImageStyle: {
+				'background-image': `url(${model.images[0]})`
+			},
+			contracted: true,
+			modalOpen: false
+		}),
 	//watcher if window image is active and freeze the window
 	watch: {
 		modalOpen: function(){
